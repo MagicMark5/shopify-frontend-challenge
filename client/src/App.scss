@@ -1,0 +1,99 @@
+$box-spacing: 0.8em;
+$box-border: 1px solid grey;
+$box-border-radius: 6px; 
+$box-shadow: 1px 1px 1px 1px rgba(128, 128, 128, 0.297);
+$background-color: #353a46;
+
+.App {
+  width: 100vw;
+  text-align: center;
+  display: flex; 
+  flex-direction: column;
+  align-items: center; 
+}
+
+body {
+  background-color: $background-color;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+section {
+  display: flex;
+  width: 85%;
+  margin: $box-spacing;
+  border: $box-border;
+  border-radius: $box-border-radius;
+}
+
+section.movieForm {
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  form {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.results-nominations {
+  justify-content: space-between;
+  border: 0;
+  margin: 0;
+
+  section {
+    flex-direction: column;
+    margin: 0;
+    max-height: 500px;
+    overflow: scroll;
+    width: 49%;
+    ul {
+      list-style: none;
+      padding-inline-start: 10px;
+      .MuiIcon-root {
+        width: fit-content;
+      }
+    }
+  }
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
+  text-overflow: ellipsis;
+}
+
+.banner {
+  justify-content: center;
+  margin: $box-spacing;
+  margin-top: 0;
+  line-height: 2em;
+  background-color: #007ede;
+  background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-light.png");
+}
+
+@media screen and (max-width: 600px) {
+  .results-nominations {
+    flex-direction: column;
+    .results, 
+    .nominations {
+      max-height: 400px;
+      overflow: scroll;
+      width: 100%;
+      .MuiTypography-displayBlock {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+    .nominations {
+      margin-top: 1em;
+    }
+  }
+}
