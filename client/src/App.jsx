@@ -10,7 +10,8 @@ import removeDuplicates from './helpers/removeDuplicates';
 
 function App() {
   // set initial state of currentNominations with local storage
-  const prevNominations = JSON.parse(localStorage.getItem('nominations') || []);
+  const prevStorage = localStorage.getItem('nominations') || [];
+  const prevNominations = prevStorage.length > 0 ? JSON.parse(prevStorage) : [];
   const classes = makeStyles();
   const [currentMovie, setCurrentMovie] = useState("")
   const [currentResults, setCurrentResults] = useState([])
