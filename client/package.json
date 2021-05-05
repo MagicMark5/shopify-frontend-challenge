@@ -1,6 +1,9 @@
 {
   "name": "shopify-frontend-challenge",
   "version": "0.1.0",
+  "engines": {
+    "npm": "10.x"
+  },
   "private": true,
   "proxy": "http://localhost:3001",
   "dependencies": {
