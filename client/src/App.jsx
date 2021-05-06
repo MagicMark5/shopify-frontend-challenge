@@ -13,12 +13,13 @@ function App() {
   const prevStorage = localStorage.getItem('nominations') || [];
   const prevNominations = prevStorage.length > 0 ? JSON.parse(prevStorage) : [];
   const classes = makeStyles();
-  const [currentMovie, setCurrentMovie] = useState("")
+  const [currentMovie, setCurrentMovie] = useState(""); // the movie search query 's'
   const [currentResults, setCurrentResults] = useState([])
   const [currentNominations, setNominations] = useState(prevNominations)
   const showBanner = currentNominations.length === 5 ? true : false;
   
   useEffect(() => {
+
     if (currentMovie) {
       // post query to shoppies-backend on App re-render
       axios.post('/api/movies', { movie: currentMovie })
