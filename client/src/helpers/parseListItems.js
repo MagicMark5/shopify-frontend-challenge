@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import ListItem from '@material-ui/core/ListItem';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -9,14 +10,14 @@ import MovieModal from '../components/MovieModal';
 
 export default function parseListItems(movie, clickHandler, isNomination, currentNominations = [], fiveSelected) {
   const { Title, Year, Poster, imdbID } = movie;
-  const movieData = { Title, Year, Poster }
+  const movieData = { Title, Year, Poster, imdbID }
   const movieString = JSON.stringify(movieData);
   const isButtonDisabled = fiveSelected || currentNominations.includes(movieString) ? true : false;
   const iconClass = isNomination ? "fas fa-trash" : "fas fa-trophy";
 
   return (
-    <>
-      <ListItem key={`${Title} (${Year}) [${imdbID}]`} >
+    <Fragment key={`${Title} (${Year}) [${imdbID}]`}>
+      <ListItem  >
         {/*render movie avatar with popover on click*/}
         <MoviePopover 
           title={Title}
@@ -25,7 +26,7 @@ export default function parseListItems(movie, clickHandler, isNomination, curren
         />
         <ListItemText primary={`${Title} (${Year})`}/>
         {/*render info icon with modal on click*/}
-        <MovieModal title={Title}/>
+        <MovieModal imdbID={imdbID}/>
         {/* render nomination button or delete button */}
         <ListItemSecondaryAction>
           <IconButton 
@@ -39,7 +40,7 @@ export default function parseListItems(movie, clickHandler, isNomination, curren
           </IconButton>
         </ListItemSecondaryAction>
       </ListItem>
-      <Divider light variant="inset" component="li" key={`${Title} (${Year}) [${imdbID}] - divider`}/>
-    </>
+      <Divider light variant="inset"/>
+    </Fragment>
   );
 }

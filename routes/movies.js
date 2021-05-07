@@ -7,24 +7,29 @@ const omdbApiKey = process.env.API_KEY;
 
 router.post('/', function(req, res, next) {
 
-  const movieQuery = req.body.movie;
+  const movieQuery = req.body.movie ? req.body.movie : "";
 
-  axios.get(`http://www.omdbapi.com/?apikey=${omdbApiKey}&s=${movieQuery}&type=movie&page=1`)
+  if (movieQuery) {
+    axios.get(`http://www.omdbapi.com/?apikey=${omdbApiKey}&s=${movieQuery}&type=movie&page=1`)
     .then(response => {
       res.status(202).send(response.data)
     })
     .catch(error => {
       res.status(502).send(error)
     })
+  } else {
+    res.status(404).send("Page not found")
+  }
+
 });
 
-router.post('/title', function(req, res) {
+router.post('/:imdbID', function(req, res) {
 
-  const title = req.body.title;
+  const imdbID = req.body.imdbID;
 
-  axios.get(`http://www.omdbapi.com/?apikey=${omdbApiKey}&t=${title}&type=movie&page=1`)
+  axios.get(`http://www.omdbapi.com/?apikey=${omdbApiKey}&i=${imdbID}&type=movie&page=1`)
   .then(response => {
-    console.log("omdb api call successful with ", title);
+    console.log("omdb api call successful with ", imdbID);
     res.status(202).send(response.data)
   })
   .catch(error => {

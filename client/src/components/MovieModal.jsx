@@ -19,17 +19,46 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
   },
   paper: {
-    backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
+    backgroundColor: 'rgb(53, 58, 70, 0.9)',
+    border: '1px solid grey',
+    borderRadius: '6px',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
+    maxHeight: '600px'
+  }, 
+  imdbIDBlock: {
+    borderBottom: '1px solid grey'
+  }, 
+  subText: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    fontSize: '0.6em',
+    padding: '3px'
+  },
+  textDivider: {
+    color: "rgba(255, 255, 255, 0.5)",
+    margin: "0 1em",
+  },
+  posterContainer: {
+    float: 'left', 
+    width: '100px',
+    height: '200px',
+    margin: '0.3em 0.3em 0.3em 0'
+  },
+  poster: {
+    width: 'inherit'
+  },
+  bodyText: {
+    fontSize: '0.7em',
+    minWidth: '100%',
+    width: '0',
   }
 }));
 
 
 export default function MovieModal(props) {
   const classes = useStyles();
-  const { title } = props
+  const { imdbID } = props
   // toggle state for modal
   const [open, setOpen] = useState(false);
   // holds the omdb response {} for this movie
@@ -43,10 +72,46 @@ export default function MovieModal(props) {
     setOpen(false);
   };
 
+  const { 
+    Title, 
+    Poster, 
+    Year, 
+    Rated, 
+    Runtime, 
+    Genre, 
+    Released 
+  } = modalData;
+
+  const textDivider = (<small className={classes.textDivider}>|</small>);
+
+  const body = ( 
+    <div className={classes.paper}>
+      <div className={classes.imdbIDBlock}>
+        <h3 id="transition-modal-imdbID">{Title} <small>({Year})</small></h3>
+        <div className={classes.subText}>
+          <small>{Rated}</small>{textDivider}
+          <small>{Runtime}</small>{textDivider}
+          <small>{Genre}</small>{textDivider}
+          <small>{Released}</small>
+        </div>
+      </div>
+      <div className={classes.posterContainer}>
+        <img 
+          className={classes.poster} 
+          src={Poster} 
+          alt={`${Title} Poster`} 
+          title={`${Title} Poster`}/>
+      </div>
+      <p id="transition-modal-description" className={classes.bodyText}>
+        {modalData.Plot}
+      </p>
+    </div>
+  )
+
   useEffect(() => {
-    if (title) {
-      // post title to shoppies-backend on first render
-      axios.post('/api/movies/title', { title: title })
+    if (imdbID) {
+      // post imdbID to shoppies-backend on first render
+      axios.post(`/api/movies/${imdbID}`, { imdbID: imdbID })
       .then(res => {
         const movie = res.data ? res.data : {};
         setModalData(movie);
@@ -56,7 +121,7 @@ export default function MovieModal(props) {
         setModalData({});
       })
     }
-  }, [title])
+  }, [imdbID]);
 
 
   return (
@@ -69,7 +134,7 @@ export default function MovieModal(props) {
         onClick={handleOpen} 
       />
       <Modal
-        aria-labelledby="transition-modal-title"
+        aria-labelledby="transition-modal-imdbID"
         aria-describedby="transition-modal-description"
         className={classes.modal}
         open={open}
@@ -81,10 +146,7 @@ export default function MovieModal(props) {
         }}
       >
         <Fade in={open}>
-          <div className={classes.paper}>
-            <h2 id="transition-modal-title">Transition modal</h2>
-            <p id="transition-modal-description">react-transition-group animates me.</p>
-          </div>
+          {body}
         </Fade>
       </Modal>
     </>
