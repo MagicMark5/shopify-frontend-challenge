@@ -5,7 +5,7 @@ import makeStyles from '../styles/movieModalStyle';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-import { Link, Typography } from '@material-ui/core';
+import { Button, Link, Typography } from '@material-ui/core';
 
 export default function MovieModal(props) {
   const classes = makeStyles();
@@ -81,14 +81,18 @@ export default function MovieModal(props) {
         <Typography><b>Awards:</b> {Awards}</Typography>
       </div>
       <div className={classes.links}>
-        <Typography variant='body1'>
-          <Link 
+        <Typography>
+          <Link className={classes.imdbIDLink}
             href={`https://www.imdb.com/title/${imdbID}`} 
             target="_blank"
-            rel="noopener"
-            color="primary">
+            rel="noreferrer"
+            color="primary"
+            >
             Read more on imdb
           </Link>
+        </Typography>
+        <Typography>
+          <Button onClick={handleClose} color="primary">Close</Button>
         </Typography>
       </div>
     </div>

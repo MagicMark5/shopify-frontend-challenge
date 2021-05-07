@@ -63,6 +63,7 @@ export default function MoviePopover(props) {
           height="450"
           src={poster}
           title={title}
+          onClick={handleClose}
         />
         <Typography className={classes.typography}>
           {title} ({year})

@@ -59,7 +59,12 @@ export default makeStyles((theme) => ({
     borderTop: '1px solid grey',
     paddingTop: '1em',
     display: 'flex',
-    justifyContent: 'center'
+    justifyContent: 'space-between', 
+    alignContent: 'center'
+  },
+  imdbIDLink: {
+    position: 'relative',
+    top: '6px'
   }
 }));
 
