@@ -30,8 +30,9 @@ export default function MovieForm(props) {
       <div className={classes.searchIcon}>
         <SearchIcon />
       </div>
-      <form onSubmit={handleSubmit} autoComplete="off">
+      <form onSubmit={handleSubmit} onBlur={handleSubmit} autoComplete="off">
         <InputBase
+          autoFocus={true}
           name="movie"
           value={movie}
           onChange={handleChange}
@@ -42,8 +43,7 @@ export default function MovieForm(props) {
           }}
           inputProps={{ 
             'aria-label': 'search', 
-            'data-testid': 'search',
-            'type': 'submit' 
+            'data-testid': 'search'
           }}
         />
       </form>
