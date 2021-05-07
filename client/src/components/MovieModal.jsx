@@ -1,92 +1,59 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import InfoIcon from '@material-ui/icons/Info';
-import { makeStyles } from '@material-ui/core/styles';
+import makeStyles from '../styles/movieModalStyle';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-
-const useStyles = makeStyles((theme) => ({
-  typography: {
-    padding: theme.spacing(2)
-  },
-  info: {
-    margin: theme.spacing(1)
-  },
-  modal: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  paper: {
-    backgroundColor: 'rgb(53, 58, 70, 0.9)',
-    border: '1px solid grey',
-    borderRadius: '6px',
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
-    maxHeight: '600px'
-  }, 
-  imdbIDBlock: {
-    borderBottom: '1px solid grey'
-  }, 
-  subText: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    fontSize: '0.6em',
-    padding: '3px'
-  },
-  textDivider: {
-    color: "rgba(255, 255, 255, 0.5)",
-    margin: "0 1em",
-  },
-  posterContainer: {
-    float: 'left', 
-    width: '100px',
-    height: '200px',
-    margin: '0.3em 0.3em 0.3em 0'
-  },
-  poster: {
-    width: 'inherit'
-  },
-  bodyText: {
-    fontSize: '0.7em',
-    minWidth: '100%',
-    width: '0',
-  }
-}));
-
+import { Link, Typography } from '@material-ui/core';
 
 export default function MovieModal(props) {
-  const classes = useStyles();
+  const classes = makeStyles();
   const { imdbID } = props
   // toggle state for modal
   const [open, setOpen] = useState(false);
   // holds the omdb response {} for this movie
   const [modalData, setModalData] = useState({}); 
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
+  // toggle open/close
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+  useEffect(() => {
+    if (imdbID) {
+      // post imdbID to shoppies-backend on first render
+      axios.post(`/api/movies/${imdbID}`, { imdbID: imdbID })
+      .then(res => {
+        const movie = res.data ? res.data : {};
+        // get movie data from imdb
+        setModalData(movie);
+      })
+      .catch(e => {
+        console.log(e)
+        setModalData({});
+      })
+    }
+  }, [imdbID]);
 
   const { 
     Title, 
     Poster, 
+    Plot,
     Year, 
     Rated, 
     Runtime, 
     Genre, 
-    Released 
+    Released, 
+    Director, 
+    Actors,
+    Awards
   } = modalData;
 
   const textDivider = (<small className={classes.textDivider}>|</small>);
 
   const body = ( 
     <div className={classes.paper}>
-      <div className={classes.imdbIDBlock}>
+      <div className={classes.titleBlock}>
         <h3 id="transition-modal-imdbID">{Title} <small>({Year})</small></h3>
         <div className={classes.subText}>
           <small>{Rated}</small>{textDivider}
@@ -102,27 +69,30 @@ export default function MovieModal(props) {
           alt={`${Title} Poster`} 
           title={`${Title} Poster`}/>
       </div>
-      <p id="transition-modal-description" className={classes.bodyText}>
-        {modalData.Plot}
-      </p>
+      <Typography 
+        id="transition-modal-description" 
+        variant='body2' 
+        className={classes.bodyText}>
+          {Plot}
+      </Typography>
+      <div className={classes.infoText}>
+        <Typography><b>Director:</b> {Director}</Typography>
+        <Typography><b>Stars:</b> {Actors}</Typography>
+        <Typography><b>Awards:</b> {Awards}</Typography>
+      </div>
+      <div className={classes.links}>
+        <Typography variant='body1'>
+          <Link 
+            href={`https://www.imdb.com/title/${imdbID}`} 
+            target="_blank"
+            rel="noopener"
+            color="primary">
+            Read more on imdb
+          </Link>
+        </Typography>
+      </div>
     </div>
   )
-
-  useEffect(() => {
-    if (imdbID) {
-      // post imdbID to shoppies-backend on first render
-      axios.post(`/api/movies/${imdbID}`, { imdbID: imdbID })
-      .then(res => {
-        const movie = res.data ? res.data : {};
-        setModalData(movie);
-      })
-      .catch(e => {
-        console.log(e)
-        setModalData({});
-      })
-    }
-  }, [imdbID]);
-
 
   return (
     <>
