@@ -1,12 +1,11 @@
 import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
-import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Icon from '@material-ui/core/Icon';
 import Divider from '@material-ui/core/Divider';
 import MoviePopover from '../components/MoviePopover';
+import MovieModal from '../components/MovieModal';
 
 export default function parseListItems(movie, clickHandler, isNomination, currentNominations = [], fiveSelected) {
   const { Title, Year, Poster, imdbID } = movie;
@@ -15,27 +14,19 @@ export default function parseListItems(movie, clickHandler, isNomination, curren
   const isButtonDisabled = fiveSelected || currentNominations.includes(movieString) ? true : false;
   const iconClass = isNomination ? "fas fa-trash" : "fas fa-trophy";
 
-  const avatarStyle = {
-    height: '60px',
-    width: '60px',
-    marginRight: '1em'
-  }
-
   return (
     <>
       <ListItem key={`${Title} (${Year}) [${imdbID}]`} >
-        <ListItemAvatar button="true" onClick={(e) => console.log("click: ", e.target)}>
-          <Avatar src={Poster} style={avatarStyle}>
-            <Icon className="fas fa-film" />
-          </Avatar>
-        </ListItemAvatar>
-        <ListItemText primary={`${Title} (${Year})`}/>
+        {/*render movie avatar with popover on click*/}
         <MoviePopover 
           title={Title}
           year={Year}
           poster={Poster}
-          imdbID={imdbID}
-          />
+        />
+        <ListItemText primary={`${Title} (${Year})`}/>
+        {/*render info icon with modal on click*/}
+        <MovieModal title={Title}/>
+        {/* render nomination button or delete button */}
         <ListItemSecondaryAction>
           <IconButton 
             edge="end" 

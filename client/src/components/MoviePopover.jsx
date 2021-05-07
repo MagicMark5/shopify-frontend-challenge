@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Popover from '@material-ui/core/Popover';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import Avatar from '@material-ui/core/Avatar';
+import Icon from '@material-ui/core/Icon';
 import Typography from '@material-ui/core/Typography';
-import InfoIcon from '@material-ui/icons/Info';
 import CardMedia from '@material-ui/core/CardMedia';
-import List from '@material-ui/core/List';
-import { ListItem, ListItemText } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   typography: {
@@ -24,40 +23,26 @@ export default function MoviePopover(props) {
   // holds toggle state for the popover component
   const [anchorEl, setAnchorEl] = useState(null);
 
-  // holds the omdb response {} for this movie
-  const [popoverData, setPopoverData] = useState({}); 
-
-  useEffect(() => {
-    if (title) {
-      // post title to shoppies-backend on first render
-      axios.post('/api/movies/title', { title: title })
-      .then(res => {
-        const movie = res.data ? res.data : {};
-        setPopoverData(movie);
-      })
-      .catch(e => {
-        console.log(e)
-        setPopoverData({});
-      })
-    }
-  }, [title])
-
-  // toggle popover
+  // toggle popover when avatar is clicked
   const handleClick = event => setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
 
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
 
+  const avatarStyle = {
+    height: '60px',
+    width: '60px',
+    marginRight: '1em'
+  }
+
   return (
     <>
-      <InfoIcon 
-        className={classes.info} 
-        aria-describedby={id} 
-        variant="contained" 
-        color="action" 
-        onClick={handleClick} 
-      />
+      <ListItemAvatar button="true" onClick={handleClick}>
+        <Avatar src={poster} style={avatarStyle}>
+          <Icon className="fas fa-film" />
+        </Avatar>
+      </ListItemAvatar>
       <Popover
         id={id}
         open={open}
@@ -82,17 +67,6 @@ export default function MoviePopover(props) {
         <Typography className={classes.typography}>
           {title} ({year})
         </Typography>
-        <List>
-          <ListItem>
-            <ListItemText primary={popoverData.Genre}/>
-          </ListItem>
-          <ListItem>
-            <ListItemText primary={popoverData.Director}/>
-          </ListItem>
-          <ListItem>
-            <ListItemText primary={popoverData.Actors}/>
-          </ListItem>
-        </List>
       </Popover>
     </>
   );
