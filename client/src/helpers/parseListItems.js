@@ -5,6 +5,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Icon from '@material-ui/core/Icon';
+import Divider from '@material-ui/core/Divider';
 import MoviePopover from '../components/MoviePopover';
 
 export default function parseListItems(movie, clickHandler, isNomination, currentNominations = [], fiveSelected) {
@@ -20,29 +21,34 @@ export default function parseListItems(movie, clickHandler, isNomination, curren
     marginRight: '1em'
   }
 
-  return (<ListItem key={`${Title} (${Year}) [${imdbID}]`}>
-            <ListItemAvatar>
-              <Avatar src={Poster} style={avatarStyle}>
-                <Icon className="fas fa-film" />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText primary={`${Title} (${Year})`}/>
-            <MoviePopover 
-              title={Title}
-              year={Year}
-              poster={Poster}
-              imdbID={imdbID}
-              />
-            <ListItemSecondaryAction>
-              <IconButton 
-                edge="end" 
-                aria-label="add"
-                disabled={isButtonDisabled}
-                name={movieString} 
-                data-testid="nominateBtn" 
-                onClick={clickHandler}>
-                <Icon className={iconClass} name={movieString}/>
-              </IconButton>
-            </ListItemSecondaryAction>
-          </ListItem>);
+  return (
+    <>
+      <ListItem key={`${Title} (${Year}) [${imdbID}]`} >
+        <ListItemAvatar button="true" onClick={(e) => console.log("click: ", e.target)}>
+          <Avatar src={Poster} style={avatarStyle}>
+            <Icon className="fas fa-film" />
+          </Avatar>
+        </ListItemAvatar>
+        <ListItemText primary={`${Title} (${Year})`}/>
+        <MoviePopover 
+          title={Title}
+          year={Year}
+          poster={Poster}
+          imdbID={imdbID}
+          />
+        <ListItemSecondaryAction>
+          <IconButton 
+            edge="end" 
+            aria-label="add"
+            disabled={isButtonDisabled}
+            name={movieString} 
+            data-testid="nominateBtn" 
+            onClick={clickHandler}>
+            <Icon className={iconClass} name={movieString}/>
+          </IconButton>
+        </ListItemSecondaryAction>
+      </ListItem>
+      <Divider light variant="inset" component="li" key={`${Title} (${Year}) [${imdbID}] - divider`}/>
+    </>
+  );
 }
