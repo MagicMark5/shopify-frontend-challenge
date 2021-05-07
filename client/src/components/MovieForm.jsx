@@ -33,7 +33,6 @@ export default function MovieForm(props) {
       <form onSubmit={handleSubmit} autoComplete="off">
         <InputBase
           name="movie"
-          type="submit"
           value={movie}
           onChange={handleChange}
           placeholder="Enter a movie title..."
@@ -43,7 +42,8 @@ export default function MovieForm(props) {
           }}
           inputProps={{ 
             'aria-label': 'search', 
-            'data-testid': 'search' 
+            'data-testid': 'search',
+            'type': 'submit' 
           }}
         />
       </form>
