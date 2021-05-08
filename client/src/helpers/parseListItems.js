@@ -31,10 +31,11 @@ export default function parseListItems(movie, clickHandler, isNomination, curren
         <ListItemSecondaryAction>
           <IconButton 
             edge="end" 
-            aria-label="add"
+            aria-label="add-nomination"
             disabled={isButtonDisabled}
             name={movieString} 
             data-testid="nominateBtn" 
+            color="primary"
             onClick={clickHandler}>
             <Icon className={iconClass} name={movieString}/>
           </IconButton>
