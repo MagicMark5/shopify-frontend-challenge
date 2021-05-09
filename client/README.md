@@ -5,6 +5,14 @@ A web app that can search the [OMDB](http://www.omdbapi.com/) for movies. It all
 * [See the challenge app](https://shoppies-app-magicmark.herokuapp.com/)
 * [See the challenge specifications](https://docs.google.com/document/d/1SdR9rQpocsH5rPTOcxr9noqHRld5NJlylKO9Hf94U8U/edit#)
 
+## Screenshots
+
+!["Adding a nomination from movie results to nominations"](https://github.com/MagicMark5/shoppify-frontend-challenge/blob/master/docs/results-nominations.png?raw=true)
+
+!["Clicking movie avatar opens popover of full movie poster"](https://github.com/MagicMark5/shoppify-frontend-challenge/blob/master/docs/avatar-popover.png?raw=true)
+
+!["Clicking the info icon opens modal of full movie details](https://github.com/MagicMark5/shoppify-frontend-challenge/blob/master/docs/movie-modal.png?raw=true)
+
 ## Features
 
 Users may: 
