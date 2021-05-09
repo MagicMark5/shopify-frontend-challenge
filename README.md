@@ -31,9 +31,13 @@ Users may:
 
 I created a back-end server for a front-end challenge for the primary reason of concealing the OMDB api key (best practices for making API requests). But also to have an option to grow the application in future (a database connection, user routes). 
 
+## Google Lighthouse Report
+
+!["Google lighthouse desktop report"](https://github.com/MagicMark5/shoppify-frontend-challenge/blob/master/docs/google-lighthouse-desktop-report.png?raw=true)
+
 ## Running the code 
 
-The app is hosted [here](https://shoppies-app-magicmark.herokuapp.com/). But if you wish to run the code yourself: 
+The app is hosted [here](https://shoppies-app-magicmark.herokuapp.com/). But if you wish to run the code locally: 
 
 First, install dependencies for the server by running `npm install` in the project root directory, and then run the same command again while in the `client` folder. 
 
@@ -62,3 +66,4 @@ First, install dependencies for the server by running `npm install` in the proje
 * axios
 * dotenv
 * nodemon
+
