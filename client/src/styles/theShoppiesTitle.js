@@ -5,7 +5,6 @@ export default makeStyles((theme) => ({
     backgroundColor: "inherit"
   },
   title: {
-    fontSize: '5.9vw',
     margin: theme.spacing(3, 2, 1),
     padding: theme.spacing(3, 2, 1)
   },
