@@ -62,9 +62,3 @@ First, install dependencies for the server by running `npm install` in the proje
 * axios
 * dotenv
 * nodemon
-
-
-
-
-
-
