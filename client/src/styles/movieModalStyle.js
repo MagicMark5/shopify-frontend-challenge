@@ -5,7 +5,8 @@ export default makeStyles((theme) => ({
     padding: theme.spacing(2)
   },
   info: {
-    margin: theme.spacing(1)
+    margin: theme.spacing(1),
+    color: "rgba(18, 149, 189, 0.687)"
   },
   modal: {
     display: 'flex',
@@ -18,6 +19,7 @@ export default makeStyles((theme) => ({
     borderRadius: '6px',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
+    minWidth: '250px',
     maxHeight: '600px'
   }, 
   titleBlock: {

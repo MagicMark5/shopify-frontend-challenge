@@ -10,6 +10,6 @@ export default makeStyles((theme) => ({
   },
   title: {
     margin: theme.spacing(4, 2, 2),
-  },
+  }
 }));
 

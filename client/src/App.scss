@@ -1,8 +1,9 @@
 $box-spacing: 0.8em;
 $box-border: 1px solid grey;
 $box-border-radius: 6px; 
-$box-shadow: 1px 1px 1px 1px rgba(128, 128, 128, 0.297);
+$box-shadow: 1px 1px 1px 1px rgba(128, 128, 128, 0.298);
 $background-color: rgb(53, 58, 70);
+$button-bkg-color: rgba(29, 83, 113, 0.687); 
 
 .App {
   width: 100vw;
@@ -58,6 +59,30 @@ section.movieForm {
       .MuiIcon-root {
         width: fit-content;
       }
+      svg:hover {
+        cursor: pointer;
+      }
+      button:disabled {
+        span {
+          color: rgba(143, 155, 179, 0.16);
+        }
+      }
+    }
+  }
+}
+
+.results {
+  button:hover {
+    span {
+      color: goldenrod;
+    }
+  }
+}
+
+.nominations {
+  button:hover {
+    span {
+      color: red;
     }
   }
 }
@@ -78,7 +103,7 @@ li {
   background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-light.png");
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 720px) {
   .results-nominations {
     flex-direction: column;
     .results, 

@@ -105,6 +105,7 @@ export default function MovieModal(props) {
         aria-describedby="movie-info" 
         variant="contained" 
         color="action" 
+        title="movie information"
         onClick={handleOpen} 
       />
       <Modal
