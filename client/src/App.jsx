@@ -7,6 +7,7 @@ import MovieForm from './components/MovieForm';
 import MovieResults from './components/MovieResults';
 import Nominations from './components/Nominations';
 import removeDuplicates from './helpers/removeDuplicates';
+import { Link } from '@material-ui/core';
 
 function App() {
   // set initial state of currentNominations with local storage
@@ -57,6 +58,18 @@ function App() {
           removeNomination={setNominations}
         />
       </section>
+      <footer className="footer">
+        <Typography>
+          <Link
+              href={`https://github.com/MagicMark5/shoppify-frontend-challenge`} 
+              target="_blank"
+              rel="noreferrer"
+              color="primary"
+              >
+              See the source code on GitHub
+            </Link>
+        </Typography>
+      </footer>
     </div>
   );
 }

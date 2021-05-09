@@ -102,6 +102,12 @@ li {
   background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-light.png");
 }
 
+.footer {
+  display: flex; 
+  justify-self: flex-end;
+  margin-top: 5em;
+}
+
 @media screen and (max-width: 720px) {
   .results-nominations {
     flex-direction: column;
