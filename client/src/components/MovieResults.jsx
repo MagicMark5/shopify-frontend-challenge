@@ -31,8 +31,8 @@ export default function MovieResults(props) {
   return (
     <section className="results">
       {query && <Typography variant="h6" className={classes.title}>{resultHeading}</Typography>}
-      {showTip && <Typography variant="h6" className={classes.title}>
-        Enter a movie title into the search bar to see some films
+      {showTip && <Typography variant="h5" className={classes.title}>
+        Enter a movie title into the search bar
         </Typography>}
       <div className={classes.background}>
         <List>

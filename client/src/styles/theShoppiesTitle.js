@@ -9,5 +9,11 @@ export default makeStyles((theme) => ({
     margin: theme.spacing(3, 2, 1),
     padding: theme.spacing(3, 2, 1)
   },
+  link: {
+    color: 'white',
+    '&:hover': {
+      color: 'blue'
+    }
+  }
 }));
 

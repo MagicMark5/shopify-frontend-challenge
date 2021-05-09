@@ -64,7 +64,8 @@ function App() {
               href={`https://github.com/MagicMark5/shoppify-frontend-challenge`} 
               target="_blank"
               rel="noreferrer"
-              color="primary"
+              className={classes.link}
+              color="action"
               >
               See the source code on GitHub
             </Link>
