@@ -9,6 +9,9 @@ import { Button, Link, Typography } from '@material-ui/core';
 
 export default function MovieModal(props) {
   const classes = makeStyles();
+  // imdbID is the movie id used to make another query to omdb API with "i" request parameter
+  // The "i" parameter is used to fetch movie data instead of title to avoid parsing errors 
+  // when movie title has special characters e.g. é
   const { imdbID } = props
   // toggle state for modal
   const [open, setOpen] = useState(false);
@@ -16,6 +19,7 @@ export default function MovieModal(props) {
   const [modalData, setModalData] = useState({}); 
 
   // toggle open/close
+  // handleOpen is given as callback to clicking the InfoIcon component
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -51,6 +55,9 @@ export default function MovieModal(props) {
 
   const textDivider = (<small className={classes.textDivider}>|</small>);
 
+
+  // DOM structure of the modal component (body is inserted into the Fade component)
+  // Data from movie ID query injected
   const body = ( 
     <div className={classes.paper}>
       <div className={classes.titleBlock}>
@@ -92,6 +99,7 @@ export default function MovieModal(props) {
           </Link>
         </Typography>
         <Typography>
+          {/* handleClose is passed to Close button within modal footer bottom-right */}
           <Button onClick={handleClose} color="primary">Close</Button>
         </Typography>
       </div>
@@ -100,6 +108,7 @@ export default function MovieModal(props) {
 
   return (
     <>
+      {/* i icon must be clicked to show modal - handleOpen sets open state to true */}
       <InfoIcon 
         className={classes.info} 
         aria-describedby="movie-info" 
@@ -108,6 +117,8 @@ export default function MovieModal(props) {
         title="movie information"
         onClick={handleOpen} 
       />
+
+      {/* the open state determines whether modal is showing */}
       <Modal
         aria-labelledby="transition-modal-imdbID"
         aria-describedby="transition-modal-description"
@@ -120,6 +131,7 @@ export default function MovieModal(props) {
           timeout: 500,
         }}
       >
+        {/* Fade component holds the body html with data of the Modal */}
         <Fade in={open}>
           {body}
         </Fade>
