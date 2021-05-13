@@ -1,4 +1,5 @@
 export default function exampleResponse() {
+  // Only used in __tests__ folder 
   return [
     {
       "Title": "Star Wars: Episode IV - A New Hope",

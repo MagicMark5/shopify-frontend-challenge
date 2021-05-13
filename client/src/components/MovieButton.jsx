@@ -18,6 +18,9 @@ const useStyles = makeStyles((theme) => ({
 export default function MovieButton(props) {
   const classes = useStyles();
 
+  // Destructure data from parseListItems
+  // movieString contains JSON.stringified Title, Year, Poster, imdbID that is added/removed from 
+  // Nominations when the button is clicked
   const {
     isButtonDisabled, 
     movieString, 
@@ -26,6 +29,7 @@ export default function MovieButton(props) {
   } = props;
 
   const action = faClass === 'fas fa-trophy' ? 'Add' : 'Remove'; 
+  // Append font awesome class to custom style classes 
   const iconClass = `${classes.icon} ${faClass}`
 
   /* the movieString prop contains the movie data 

@@ -1,4 +1,6 @@
 export default function removeDuplicates(array) {
+  // Removes occassional duplicates given by omdbID 
+  // prevents bugs/errors/warnings with React <li> and fragment unique keys
   const uniqueStrings = [];
   const uniqueResults = [];
   
