@@ -25,6 +25,7 @@ export default function MovieResults(props) {
   }
 
   // parse movies and conditionally enable buttons and button icon (false = trophy)
+  // parseListItems (helpers folder) does the job of rendering the resp child components of each MovieResult component
   const parsedMovies = validatedMovies
     .map(movie => parseListItems(movie, nominateMovie, false, currentNominations, fiveSelected));
   

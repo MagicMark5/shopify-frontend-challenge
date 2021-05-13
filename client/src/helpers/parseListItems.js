@@ -7,9 +7,9 @@ import MoviePopover from '../components/MoviePopover';
 import MovieModal from '../components/MovieModal';
 import MovieButton from '../components/MovieButton';
 
-// parseListItems is called by MovieResults and Nominations components 
+// parseListItems is reused by both MovieResults and Nominations components 
 // when mapping their respective movie arrays
-// to parse a <li> for each movie and populate child components of each <li>
+// to parse a <li> for each movie and populate child components of each <li> (MovieResult or Nomination)
 
 export default function parseListItems(movie, clickHandler, isNomination, currentNominations = [], fiveSelected) {
   // extract and stringify movie data
@@ -29,23 +29,30 @@ export default function parseListItems(movie, clickHandler, isNomination, curren
   return (
     <Fragment key={`${Title} (${Year}) [${imdbID}]`}>
       <ListItem>
-        {/*render movie avatar with popover on click*/}
+
+        {/* Custom component to render movie avatar with popover on click*/}
         <MoviePopover 
           title={Title}
           year={Year}
           poster={Poster}
         />
+
+        {/* material-ui component for title (year) text */}
         <ListItemText primary={`${Title} (${Year})`}/>
-        {/*render info icon with modal on click*/}
+
+        {/* Custom component to render info icon with modal on click*/}
         <MovieModal imdbID={imdbID}/>
+
         <ListItemSecondaryAction>
-          {/* render nomination button or delete button */}
+
+          {/* Custom component to render nomination button or delete button */}
           <MovieButton
             isButtonDisabled={isButtonDisabled} 
             movieString={movieString}
             clickHandler={clickHandler} 
             faClass={faClass}
           />
+
         </ListItemSecondaryAction>
       </ListItem>
       <Divider light variant="inset"/>
