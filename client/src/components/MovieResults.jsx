@@ -19,8 +19,8 @@ export default function MovieResults(props) {
 
   // The onClick handler for each nominate movie IconButton 
   const nominateMovie = (event) => {
-    // get movie data from name prop of whichever element was clicked (either button or icon)
-    const movie = event.target.name ? event.target.name : event.target.offsetParent.name;
+    // get movie data from value prop of the button, if undefined then the icon was clicked instead
+    const movie = event.target.value ? event.target.value : event.target.offsetParent.value;
     handleNominateAction([...currentNominations, movie]);
   }
 

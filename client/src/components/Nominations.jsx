@@ -11,8 +11,9 @@ export default function Nominations(props) {
   const showTip = currentNominations.length === 0 ? true : false;
 
   const handleRemoveNomination = (event) => {
-    // get movie data from name prop of whichever element was clicked (either button or icon)
-    const movie = event.target.name ? event.target.name : event.target.offsetParent.name;
+    // get movie data from button value attribute 
+    // if target value is undefined, the icon was clicked, which doesn't have a value attribute
+    const movie = event.target.value ? event.target.value : event.target.offsetParent.value;
     const copyNominations = [...currentNominations];
     const updatedNoms = copyNominations.filter(nom => nom !== movie)
     removeNomination([...updatedNoms]);

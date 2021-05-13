@@ -85,7 +85,6 @@ function App() {
               target="_blank"
               rel="noreferrer"
               className={classes.link}
-              color="action"
               >
               See the source code on GitHub
             </Link>

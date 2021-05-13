@@ -13,7 +13,7 @@ import MovieButton from '../components/MovieButton';
 
 export default function parseListItems(movie, clickHandler, isNomination, currentNominations = [], fiveSelected) {
   // extract and stringify movie data
-  // which will be passed into name attribute of button element
+  // which will be passed into value attribute of button element
   const { Title, Year, Poster, imdbID } = movie;
   const movieData = { Title, Year, Poster, imdbID }
   const movieString = JSON.stringify(movieData);

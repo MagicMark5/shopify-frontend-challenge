@@ -33,9 +33,10 @@ export default function MovieButton(props) {
   const iconClass = `${classes.icon} ${faClass}`
 
   /* the movieString prop contains the movie data 
-    and is stored in the name attribute of the button. 
-    The name attr of the button is parsed when the button is clicked 
-    in its parent component e.g. JSON.parse(event.target.name) */
+    and is stored in the value attribute of the button. 
+    The value attr of the button is parsed when the button is clicked 
+    in its parent component with the handleNomination/handleRemove callbacks
+    e.g. JSON.parse(event.target.value) */
 
   return (
     <IconButton 
@@ -44,11 +45,11 @@ export default function MovieButton(props) {
       aria-label="add-nomination"
       title={`${action} Nomation`}
       disabled={isButtonDisabled}
-      name={movieString} 
+      name={"Nominate Movie"} 
+      value={movieString}
       data-testid="nominateBtn" 
-      color="action"
       onClick={clickHandler}>
-      <Icon className={iconClass} name={movieString}/>
+      <Icon className={iconClass}/>
     </IconButton>
   );
 };
