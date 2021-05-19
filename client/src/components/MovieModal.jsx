@@ -26,7 +26,7 @@ export default function MovieModal(props) {
   useEffect(() => {
     if (imdbID) {
       // post imdbID to shoppies-backend on first render
-      axios.post(`/api/movies/${imdbID}`, { imdbID: imdbID })
+      axios.get(`/api/movies/${imdbID}`)
       .then(res => {
         const movie = res.data ? res.data : {};
         // get movie data from imdb

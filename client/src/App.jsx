@@ -34,7 +34,7 @@ function App() {
 
     if (currentMovie) {
       // post query to shoppies-backend on App re-render / when the query changes
-      axios.post('/api/movies', { movie: currentMovie })
+      axios.get(`api/movies/search/${currentMovie}`)
       .then(res => {
         const movieArray = res.data.Search ? res.data.Search : [];
         const uniqueResults = removeDuplicates(movieArray);
