@@ -1,137 +1,49 @@
-$box-spacing: 0.8em;
-$box-border: 1px solid grey;
-$box-border-radius: 6px; 
-$box-shadow: 1px 1px 1px 1px rgba(128, 128, 128, 0.298);
-$background-color: rgb(53, 58, 70);
-
 .App {
-  width: 100vw;
   text-align: center;
-  display: flex; 
-  flex-direction: column;
-  align-items: center; 
 }
 
-body {
-  background-color: $background-color;
+.loading {
+  color: black;
+}
+
+.controlNav > ul {
+  background-color: #282c34;
+  color: white;
+  list-style: none;
+  display: flex; 
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 20px 10px;  
+  margin: 0px;
+}
+
+.Company-logo {
+  width: 120px;
+  height: 120px;
+  padding: 0px 20px;
+}
+
+.user-info {
+  padding: 0px 20px;
+}
+
+.user-avatar {
+  max-width: 50px;
+}
+
+.App-header {
+  background-color: #282c34;
   min-height: 100vh;
+  min-width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
 }
 
-section {
-  display: flex;
-  width: 85%;
-  margin: $box-spacing;
-  border: $box-border;
-  border-radius: $box-border-radius;
-}
-
-section.movieForm {
-  justify-content: center;
-  align-items: center;
-  height: 80px;
-  form {
-    display: flex; 
-    justify-content: center;
-    align-items: center;
-  }
-}
-
-.results-nominations {
-  justify-content: space-between;
-  border: 0;
-  margin: 0;
-
-  section {
-    flex-direction: column;
-    margin: 0;
-    max-height: 500px;
-    overflow: scroll;
-    width: 49%;
-    ul {
-      list-style: none;
-      padding-inline-start: 10px;
-      .MuiIcon-root {
-        width: fit-content;
-      }
-      svg:hover {
-        cursor: pointer;
-      }
-      button:disabled {
-        span {
-          color: rgba(143, 155, 179, 0.16);
-        }
-      }
-    }
-  }
-}
-
-.results {
-  button:hover {
-    span {
-      color: goldenrod;
-    }
-  }
-}
-
-.nominations {
-  button:hover {
-    span {
-      color: red;
-    }
-  }
-}
-
-li {
-  display: flex;
-  justify-content: space-between;
-  text-align: left;
-  text-overflow: ellipsis;
-}
-
-.banner {
-  justify-content: center;
-  margin: $box-spacing;
-  margin-top: 0;
-  line-height: 2em;
-  background-color: #007ede;
-  background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-light.png");
-}
-
-.footer {
-  display: flex; 
-  justify-self: flex-end;
-  margin-top: 5em;
-  margin-bottom: 0.5em;
-}
-
-@media screen and (max-width: 720px) {
-
-  .App {
-    h2 {
-      font-size: 5.9vw;
-    }
-  }
-  
-  .results-nominations {
-    flex-direction: column;
-    .results, 
-    .nominations {
-      max-height: 400px;
-      overflow: scroll;
-      width: 100%;
-      .MuiTypography-displayBlock {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-    }
-    .nominations {
-      margin-top: 1em;
-    }
-  }
+.App-link {
+  color: #61dafb;
 }

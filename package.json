@@ -1,5 +1,5 @@
 {
-  "name": "shoppies-backend",
+  "name": "task-editor-server",
   "version": "1.0.0",
   "engines": {
     "node": "10.x"
