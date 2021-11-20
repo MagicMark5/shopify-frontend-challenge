@@ -4,12 +4,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
-const loginRouter = require('./routes/login');
-const projectsRouter = require('./routes/projects');
-const categoriesRouter = require('./routes/categories');
-const companiesRouter = require('./routes/companies');
-const tasklistsRouter = require('./routes/tasklists');
-const tasksRouter = require('./routes/tasks');
+const moviesRouter = require('./routes/movies');
 
 const app = express();
 
@@ -20,16 +15,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.use('/', indexRouter);
-app.use('/login', loginRouter);
-app.use('/projects', projectsRouter);
-app.use('/categories', categoriesRouter);
-app.use('/companies', companiesRouter);
-app.use('/tasklists', tasklistsRouter);
-app.use('/tasks', tasksRouter);
+app.use('/api/movies', moviesRouter);
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'client/build/index.html'));
 });
-
 
 module.exports = app;
